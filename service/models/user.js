@@ -8,7 +8,8 @@ module.exports = connectDB.define('user',{
         primaryKey: true
     },
     username: {
-        type: Sequelize.STRING(255)
+        type: Sequelize.STRING(255),
+        unique: true
     },
     fullname: {
         type: Sequelize.STRING(255)
@@ -20,7 +21,8 @@ module.exports = connectDB.define('user',{
         }
     },
     password: {
-        type: Sequelize.STRING(60)
+        type: Sequelize.STRING(60),
+        allowNull: false
     },
     status: {
         type: Sequelize.INTEGER

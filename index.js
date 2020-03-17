@@ -1,11 +1,19 @@
 const express = require('express');
 const app = express();
+const bodyParser = require('body-parser');
 const PORT = process.env.PORT  || 3333;
-const author = require('./service/models/author')
-const user_permission = require('./service/models/user_permission')
+const passport = require('./passport');
+const seneca = require('seneca')();
+
+
 require('dotenv').config();
-app.get('/', (req,res) => {
+//middleware
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: false}));
+//routes
+app.use('/login',require('./routes/login'));
+app.use('/user',require('./routes/user'));
+app.get('/',passport.authenticate('jwt',{session:false}), (req,res) => {
     res.json({msg: "sever is working"});
 });
-
  app.listen(PORT, () => console.log(`sever is listening PORT : ${PORT}`));
