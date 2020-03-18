@@ -29,7 +29,7 @@ module.exports = connectDB.define('book',{
         type: Sequelize.INTEGER
     },
     create_by : {
-        type: Sequelize.INT
+        type: Sequelize.INTEGER
     },
     approved_time : {
         type: Sequelize.INTEGER
