@@ -41,16 +41,16 @@ module.exports = function (options) {
 
     async function addUser(msg,reply){
         try{
-            let {infor} = msg;
-            console.log(infor);
-            if(!infor.password) {
+            let {data} = msg;
+            console.log(data);
+            if(!data.password) {
                 res.json({msg : "password cannot be empty"});
                 return ;
             }
             let hashedPassword = await bcrypt.hash(password,saltRounds); 
-            infor['password'] = hashedPassword;
+            data['password'] = hashedPassword;
             try{
-                let User = await user.create(infor);
+                let User = await user.create(data);
                 reply(null,User);
             }catch(err){
                 reply(err);
@@ -70,10 +70,10 @@ module.exports = function (options) {
             });
             if(!User) reply({msg: "cannot find this user"});
             else{
-            let {username,fullname,email,status} = {infor} = msg || User;
-            console.log(infor);
+            let {username,fullname,email,status} = {data} = msg || User;
+            console.log(data);
                 try{
-                    let result = await user.update(infor,{
+                    let result = await user.update(data,{
                         where: {
                             id: userId
                         }
@@ -91,7 +91,7 @@ module.exports = function (options) {
     async function blockUser(msg,reply) {
         try{
             let {userId} = msg;
-            let {block_message,block_time} = msg.infor;
+            let {block_message,block_time} = msg.data;
             let status = -1;
             let result = await user.update({block_message,block_time,status},{
                 where: {
