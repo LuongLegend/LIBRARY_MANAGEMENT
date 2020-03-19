@@ -25,6 +25,7 @@ module.exports.getOne = async (req, res, next) => {
 module.exports.addUser = async (req, res, next) => {
     try {
         let data = { username, fullname, email, status, password } = req.body;
+        data['create_by'] = req.id;
         data['create_time'] = Date.now();
         let result = await senecaAct({ role: 'user', cmd: 'addUser', data: data });
         res.json(result);
