@@ -1,4 +1,4 @@
-const user = require('../service/models/user');
+const {user} = require('../service/models/index');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 module.exports = function (options) {

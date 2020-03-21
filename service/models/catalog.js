@@ -1,28 +1,28 @@
-const Sequelize = require('sequelize');
+const {DataTypes} = require('sequelize');
 const connectDB = require('../../config/connectDB');
 
 module.exports = connectDB.define('catalog', {
     id: {
-        type: Sequelize.INTEGER,
+        type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true,
     },
     name: {
-        type: Sequelize.STRING(255)
+        type: DataTypes.STRING(255)
     },
     alias: {
-        type: Sequelize.STRING(255)
+        type: DataTypes.STRING(255)
     },
     create_time: {
-        type: Sequelize.INTEGER
+        type: DataTypes.INTEGER
     },
     create_by: {
-        type: Sequelize.INTEGER
+        type: DataTypes.INTEGER
     },
     last_update_time: {
-        type: Sequelize.INTEGER
+        type: DataTypes.INTEGER
     },
     last_update_by: {
-        type: Sequelize.INTEGER
+        type: DataTypes.INTEGER
     }
 });

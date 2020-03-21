@@ -1,42 +1,43 @@
-const Sequelize = require('sequelize');
+const {DataTypes} = require('sequelize');
 const connectDB = require('../../config/connectDB');
-
-module.exports = connectDB.define('user',{
+const user = connectDB.define('user',{
     id: {
-        type: Sequelize.INTEGER,
+        type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true
     },
     username: {
-        type: Sequelize.STRING(255),
+        type: DataTypes.STRING(255),
         unique: true
     },
     fullname: {
-        type: Sequelize.STRING(255)
+        type: DataTypes.STRING(255)
     },
     email: {
-        type: Sequelize.STRING(255),
+        type: DataTypes.STRING(255),
         validate: {
             isEmail: true
         }
     },
     password: {
-        type: Sequelize.STRING(60),
+        type: DataTypes.STRING(60),
         allowNull: false
     },
     status: {
-        type: Sequelize.INTEGER
+        type: DataTypes.INTEGER
     },
     block_message: {
-        type: Sequelize.STRING(512)
+        type: DataTypes.STRING(512)
     },
     block_time: {
-        type: Sequelize.INTEGER
+        type: DataTypes.INTEGER
     },
     create_time: {
-        type: Sequelize.INTEGER
+        type: DataTypes.INTEGER
     },
     create_by: {
-        type: Sequelize.INTEGER
+        type:DataTypes.INTEGER
     }
 });
+
+module.exports = user;

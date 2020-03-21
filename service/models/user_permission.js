@@ -1,23 +1,22 @@
-const Sequelize = require('sequelize');
+const { DataTypes } = require('sequelize');
 const connectDB = require('../../config/connectDB');
-
-module.exports = connectDB.define('user_permission', {
+const user_permission = connectDB.define('user_permission', {
     id: {
-        type: Sequelize.INTEGER,
+        type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true
     },
     user_id: {
-        type: Sequelize.INTEGER
+        type: DataTypes.INTEGER
     },
     permission_id: {
-        type: Sequelize.INTEGER
+        type: DataTypes.INTEGER
     },
     create_time: {
-        type: Sequelize.INTEGER
+        type: DataTypes.INTEGER
     },
     create_by: {
-        type: Sequelize.INTEGER
+        type: DataTypes.INTEGER
     }
 },
     {
@@ -26,6 +25,8 @@ module.exports = connectDB.define('user_permission', {
                 unique: true,
                 fields: ['user_id', 'permission_id']
             }
-        ]
+        ],
+        underscored: true
     }
 );
+module.exports = user_permission;

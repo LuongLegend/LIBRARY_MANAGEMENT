@@ -1,40 +1,42 @@
-const Sequelize = require('sequelize');
+const {DataTypes} = require('sequelize');
 const connectDB = require('../../config/connectDB');
 
 module.exports = connectDB.define('book',{
     id: {
-        type: Sequelize.INTEGER,
+        type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true
     },
     author_id: {
-        type: Sequelize.INTEGER
+        type: DataTypes.INTEGER
     },
     catalog_id: {
-        type: Sequelize.INTEGER
+        type: DataTypes.INTEGER
     },
     title : {
-        type: Sequelize.STRING(255)
+        type: DataTypes.STRING(255)
     },
     isbn : {
-        type: Sequelize.STRING(20)
+        type: DataTypes.STRING(20)
     },
     status: {
-        type: Sequelize.TINYINT(4)
+        type: DataTypes.TINYINT(4)
     },
     description: {
-        type: Sequelize.TEXT
+        type: DataTypes.TEXT
     },
     create_time : {
-        type: Sequelize.INTEGER
+        type: DataTypes.INTEGER
     },
     create_by : {
-        type: Sequelize.INTEGER
+        type: DataTypes.INTEGER
     },
     approved_time : {
-        type: Sequelize.INTEGER
+        type: DataTypes.INTEGER
     },
     approved_by: {
-        type: Sequelize.INTEGER
+        type: DataTypes.INTEGER
     }
+},{
+    underscored: true
 });

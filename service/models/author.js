@@ -1,19 +1,19 @@
-const Sequelize = require('sequelize');
+const {DataTypes} = require('sequelize');
 const connectDB = require('../../config/connectDB');
 
 module.exports = connectDB.define('author', {
     id: {
-        type: Sequelize.INTEGER,
+        type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true
     },
     name: {
-        type: Sequelize.STRING(255)
+        type: DataTypes.STRING(255)
     },
     description: {
-        type: Sequelize.TEXT
+        type: DataTypes.TEXT
     },
     email: {
-        type: Sequelize.STRING(255)
+        type: DataTypes.STRING(255)
     }
 });
