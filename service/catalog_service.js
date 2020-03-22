@@ -55,6 +55,7 @@ module.exports = function (options) {
                 where: {
                     id: id
                 },
+                attributes: ['id','name', 'alias'],
                 include: {
                     model: book,
                     attributes: ['title', 'isbn', 'status', 'description']
