@@ -52,6 +52,7 @@ module.exports = function (options) {
             reply(err);
         }
     }
+
     async function findAuthor(msg, reply) {
         try {
             let { data } = msg;
@@ -78,7 +79,7 @@ module.exports = function (options) {
     async function getAll(msg, reply){
         try{
             let result = await author.findAll({
-                limit: 20
+                limit: 20,
             });
             reply(null, result);
         }catch(err){
