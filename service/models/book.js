@@ -17,7 +17,8 @@ module.exports = connectDB.define('book',{
         type: DataTypes.STRING(255)
     },
     isbn : {
-        type: DataTypes.STRING(20)
+        type: DataTypes.STRING(20),
+        unique: true
     },
     status: {
         type: DataTypes.TINYINT(4)

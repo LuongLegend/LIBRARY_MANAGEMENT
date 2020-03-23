@@ -28,7 +28,9 @@ module.exports.getAbook = async (req, res, next) => {
     try {
         let { id } = req.params;
         let result = await senecaAct({ role: 'book', cmd: 'getAbook', id: id });
-        res.json(result);
+        if(!result) res.json({msg: 'cannot find this book'});
+        else
+            res.json(result);
     } catch (err) {
         console.log(err);
         res.json(err.message);
@@ -38,9 +40,11 @@ module.exports.getAbook = async (req, res, next) => {
 module.exports.addBook = async (req, res, next) => {
     try {
         let { author_id, catalog_id, title, isbn, description } = req.body;
+        if(!title || !isbn) res.json({msg: 'title or isbn cannot be empty'});
         let create_time = Date.now();
         let create_by = req.id;
-        let data = { author_id, catalog_id, title, isbn, description, create_time, create_by }
+        let status = -1;
+        let data = { author_id, catalog_id, title, isbn, status, description, create_time, create_by }
         let result = await senecaAct({ role: 'book', cmd: 'addBook', data: data });
         res.json(result);
     } catch (err) {
@@ -78,7 +82,8 @@ module.exports.checkBook = async (req, res, next) => {
         let { id } = req.params;
         let approved_time = Date.now();
         let approved_by = req.id;
-        let data = { approved_time, approved_by };
+        let status = 1;
+        let data = { approved_time, approved_by, status };
         let result = await senecaAct({ role: 'book', cmd: 'checkBook', data: data, id: id });
         res.json(result);
     } catch (err) {

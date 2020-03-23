@@ -72,7 +72,8 @@ module.exports = function (options) {
         try {
             let { id } = msg;
             let result = await book.findOne({
-                attributes: ['id', 'author_id', 'catalog_id', 'title', 'isbn', 'status', 'description'],
+                attributes: ['id', 'author_id', 'catalog_id', 'title', 'isbn', 
+                'status', 'description','create_by','create_time','approved_time','approved_by'],
                 include: [{
                     model: author,
                     attributes: ['name', 'description']

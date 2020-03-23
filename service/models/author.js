@@ -14,6 +14,9 @@ module.exports = connectDB.define('author', {
         type: DataTypes.TEXT
     },
     email: {
-        type: DataTypes.STRING(255)
+        type: DataTypes.STRING(255),
+        validate: {
+            isEmail: true
+        }
     }
 });

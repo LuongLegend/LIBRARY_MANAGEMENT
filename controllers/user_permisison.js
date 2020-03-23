@@ -15,7 +15,10 @@ module.exports.getPermission = async (req, res, next) => {
 module.exports.addPermission = async (req, res, next) => {
     try {
         let { user_id, permission_id } = req.body;
-        let data = { user_id, permission_id };
+        if(!user_id || !permission_id) res.json({msg: 'user_id or permission_id cannot be empty'});
+        let create_by = req.id;
+        let create_time = Date.now();
+        let data = { user_id, permission_id, create_by, create_time };
         let result = await senecaAct({ role: 'permission', cmd: 'addPermission', data: data });
         res.json(result);
     } catch (err) {

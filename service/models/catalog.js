@@ -11,7 +11,8 @@ module.exports = connectDB.define('catalog', {
         type: DataTypes.STRING(255)
     },
     alias: {
-        type: DataTypes.STRING(255)
+        type: DataTypes.STRING(255),
+        unique: true
     },
     create_time: {
         type: DataTypes.INTEGER

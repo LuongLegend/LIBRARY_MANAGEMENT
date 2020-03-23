@@ -11,7 +11,7 @@ module.exports = function (options) {
     async function getAll(msg, reply) {
         try {
             let result = await user.findAll({
-                attributes: {exclude: ['password', 'block_message', 'block_time', 'create_time', 'create_by']}
+                attributes: { exclude: ['password'] }
             });
             reply(null, result);
         } catch (err) {
@@ -24,7 +24,7 @@ module.exports = function (options) {
         try {
             let userId = msg.userId;
             let result = await user.findOne({
-                exclude: ['password', 'block_message', 'block_time', 'create_time', 'create_by'],
+                attributes: { exclude: ['password'] },
                 where: {
                     id: userId
                 }

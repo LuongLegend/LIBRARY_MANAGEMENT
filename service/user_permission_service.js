@@ -8,6 +8,7 @@ module.exports = function (options) {
     async function getPermission(msg, reply) {
         try {
             let result = await user.findAll({
+                attributes: {exclude: ['password','block_message','block_time','create_by','create_time']},
                 include: {
                     model: user_permission,
                     attributes: ['permission_id', 'create_by', 'create_time'],
