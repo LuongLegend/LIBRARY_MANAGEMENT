@@ -1,8 +1,11 @@
 const express = require('express');
+const cors = require('cors');
 const app = express();
 const bodyParser = require('body-parser');
 const PORT = process.env.PORT || 3333;
 require('dotenv').config();
+//enable all domain can access this domain
+app.use(cors());
 //middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
