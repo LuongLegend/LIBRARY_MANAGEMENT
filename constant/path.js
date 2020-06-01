@@ -3,9 +3,12 @@ const listNoAuthen = [
     `POST/login`,
     `GET/book`,
     `GET/book/${PARAMS}`,
+    `GET/book?`,
     `GET/catalog`,
+    `GET/catalog?`,
     `GET/catalog/${PARAMS}`,
     `GET/author`,
+    `GET/author?`,
     `GET/author/${PARAMS}`
 ]
 const listPermission = {

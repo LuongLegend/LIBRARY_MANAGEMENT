@@ -7,7 +7,12 @@ function checkPath(arrCurrentPath, arrComparePath) {
     if (arrCurrentPath.length !== arrComparePath.length) return false;
     let i;
     for (i = 0; i < arrCurrentPath.length; i++) {
-        if (arrCurrentPath[i] == arrComparePath[i] || arrComparePath[i] == PARAMS || arrComparePath[i].indexOf('?') !== -1)
+        console.log(arrCurrentPath[i],arrComparePath[i])
+        if (
+            arrCurrentPath[i] == arrComparePath[i] 
+            || arrComparePath[i] == PARAMS 
+            || (arrCurrentPath[i].indexOf(arrComparePath[i]) === 0 && arrComparePath[i].charAt(arrComparePath[i].length-1) === '?')
+            )
             continue;
         else break;
     }
