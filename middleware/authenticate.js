@@ -7,7 +7,6 @@ function checkPath(arrCurrentPath, arrComparePath) {
     if (arrCurrentPath.length !== arrComparePath.length) return false;
     let i;
     for (i = 0; i < arrCurrentPath.length; i++) {
-        console.log(arrCurrentPath[i],arrComparePath[i])
         if (
             arrCurrentPath[i] == arrComparePath[i] 
             || arrComparePath[i] == PARAMS 

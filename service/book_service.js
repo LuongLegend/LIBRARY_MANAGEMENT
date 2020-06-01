@@ -24,9 +24,15 @@ module.exports = function (options) {
     async function findBook(msg, reply) {
         try {
             let { data } = msg;
-            let { q, page } = data;
+            let { q, c, page } = data;
             let limit = 20;
             let offset = 0;
+            const catalogOptions = c ?
+                {
+                    '$catalog.name$': {
+                        [Op.in]: c.split(',')
+                    }
+                } : {};
             if (parseInt(page) > 1) offset = limit * (parseInt(page) - 1);
             let result = book.findAll({
                 attributes: ['id', 'author_id', 'catalog_id', 'title', 'isbn', 'status', 'description'],
@@ -51,7 +57,9 @@ module.exports = function (options) {
                                 [Op.substring]: q
                             }
                         }
-                    ]
+                    ],
+                    [Op.and]: [catalogOptions]
+
                 },
                 include: [{
                     model: author,
@@ -72,8 +80,8 @@ module.exports = function (options) {
         try {
             let { id } = msg;
             let result = await book.findOne({
-                attributes: ['id', 'author_id', 'catalog_id', 'title', 'isbn', 
-                'status', 'description','create_by','create_time','approved_time','approved_by'],
+                attributes: ['id', 'author_id', 'catalog_id', 'title', 'isbn',
+                    'status', 'description', 'create_by', 'create_time', 'approved_time', 'approved_by'],
                 include: [{
                     model: author,
                     attributes: ['name', 'description']
@@ -84,7 +92,7 @@ module.exports = function (options) {
                 where: {
                     [Op.or]: [{
                         id: id
-                    },{ 
+                    }, {
                         isbn: id
                     }]
                 }
