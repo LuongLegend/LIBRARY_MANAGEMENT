@@ -24,9 +24,9 @@ module.exports = function (options) {
     async function findBook(msg, reply) {
         try {
             let { data } = msg;
-            let { q, c, page } = data;
-            let limit = 20;
-            let offset = 0;
+            let { q, c, page, isLimited } = data;
+            let limit = isLimited == 'f' ? null : 20;
+            let offset = isLimited == 'f' ? null : 0;
             const catalogOptions = c ?
                 {
                     '$catalog.name$': {

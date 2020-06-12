@@ -6,12 +6,12 @@ seneca.use(require('../service/book_service'));
 module.exports.getOrFindBook = async (req, res, next) => {
     try {
         //just have a search box to find Book
-        let { q,c, page } = req.query;
+        let { q,c, page, isLimited} = req.query;
         if (!q) {
             let result = await senecaAct({ role: 'book', cmd: 'getAll' });
             res.json(result);
         } else {
-            let data = { q,c, page };
+            let data = { q,c, page,isLimited };
             let result = await senecaAct({ role: 'book', cmd: 'findBook', data: data });
             let msg = `search results: ${q}`;
             if (result.length === 0) res.json({ msg, result: 'no result match your search information' });
