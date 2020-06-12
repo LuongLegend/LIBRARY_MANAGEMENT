@@ -11,9 +11,15 @@ module.exports = function (options) {
 
     async function getAll(msg, reply) {
         try {
+            let { data } = msg;
+            let {page, isLimited } = data;
+            let limit = isLimited == 'f' ? null : 20;
+            let offset = isLimited == 'f' ? null : 0;
+            if (parseInt(page) > 1) offset = limit * (parseInt(page) - 1);
             let result = await book.findAll({
                 attributes: ['id', 'author_id', 'catalog_id', 'title', 'isbn', 'status', 'description'],
-                limit: 20
+                limit: limit,
+                offset: offset
             });
             reply(null, result);
         } catch (err) {

@@ -8,7 +8,8 @@ module.exports.getOrFindBook = async (req, res, next) => {
         //just have a search box to find Book
         let { q,c, page, isLimited} = req.query;
         if (!q) {
-            let result = await senecaAct({ role: 'book', cmd: 'getAll' });
+            let data = {page, isLimited};
+            let result = await senecaAct({ role: 'book', cmd: 'getAll', data: data });
             res.json(result);
         } else {
             let data = { q,c, page,isLimited };
